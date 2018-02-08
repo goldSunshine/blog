@@ -13,3 +13,7 @@ def home(request):
     post_list = Article.objects.all()
 
     return render(request,'home.html',{'post_list':post_list})
+
+
+def detail():
+	return 
