@@ -20,8 +20,9 @@ from blog import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^admin/', include(djud_urls)),
+    url(r'^ueditor/', include(djud_urls)),
     url(r'^blog/', views.home),
+    url(r'^post/(?P<id>\d+)/$',views.detail,name="blog_detail"),
 
 ]
 
