@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+<style>
+
+body{
+  height:auto;
+  background-size:100%;
+  {% load staticfiles %}
+  
+  background:url("{% static '13.jpg' %}") no-repeat;
+}
+
+#home {
+    background-color:white;
+#    text-align:center;
+    width:95%;
+    height:auto;
+    overflow:auto;
+    border-radius: 5px; 
+    height:1000px;
+    opacity:0.8;
+    margin:50px auto auto auto; 
+    box-shadow: 0px 0px 10px 5px #888888;
+}
+
+#title{
+    width:100%;
+    height:120px;
+}
+
+#container{
+    width:100%;
+    height:auto;
+    height:800px;
+}
+
+#side {
+    background-color:#FFE4C4;
+    float: left;  
+    width:220px; 
+    border-right:solid 1px black;
+     height:800px;
+   
+}
+
+#content {
+    margin-left:220px;
+    height:800px;
+   
+    
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="home">
+
+<div id="title">
+{% load staticfiles %}
+<img src="{% static 'logo.jpg' %}" width="120" height="120" style="float:left"/>
+<img src="{% static 'name.png' %}"                      style="float:left"/>
+</div><!--end for title-->
+
+<div id="container">
+
+<div id="side">
+<h1></h1>
+</div>
+
+<div id="content">
+
+<p  style="background-color:rgba(0,0,0,0.7);">--></p>
+{% for post in post_list %}
+<h2 style="font-family:Simsun;font-size:35px">{{post.title}}</h1>
+Label: <span style="background:#FF1493;">{{post.category}}</span>
+<br>
+<a href="{% url 'blog_detail' id=post.id %}">Read More >>> </a>
+<p style="text-align:right">创建时间：{{post.pub_date}}</p>
+
+<!--<p style="text-align:right">最后修改时间：{{post.update_time}}</p>-->
+
+<p  style="background-color: rgba(0,0,0,0.7);">--></p>
+{%endfor%}
+
+
+</div><!--content-->
+
+
+
+</div><!--end for home-->
+
+
+
+
+
+
+</body>
+</html>
