@@ -16,11 +16,9 @@ body{
 #home {
     background-color:white;
 #    text-align:center;
-    width:95%;
-    height:auto;
-    overflow:auto;
+    width:90%;
     border-radius: 5px; 
-    height:1000px;
+    height:2000px;
     opacity:0.8;
     margin:50px auto auto auto; 
     box-shadow: 0px 0px 10px 5px #888888;
@@ -49,7 +47,11 @@ body{
 #content {
     margin-left:220px;
     height:800px;
-   
+
+function setstyle(x)
+{
+document.getElementById(x).style.background="yellow";
+}
     
 }
 
@@ -63,28 +65,30 @@ body{
 <div id="title">
 {% load staticfiles %}
 <img src="{% static 'logo.jpg' %}" width="120" height="120" style="float:left"/>
-<img src="{% static 'name.png' %}"                      style="float:left"/>
+<img src="{% static 'name.png' %}"          style="float:left"/>
 </div><!--end for title-->
 
 <div id="container">
 
 <div id="side">
-<h1></h1>
+<img src="{% static 'github1.jpg' %}" width="100" height="100"   style="float:left"/>
 </div>
 
 <div id="content">
 
-<p  style="background-color:rgba(0,0,0,0.7);">--></p>
+
+
 {% for post in post_list %}
-<h2 style="font-family:Simsun;font-size:35px">{{post.title}}</h1>
-Label: <span style="background:#FF1493;">{{post.category}}</span>
-<br>
-<a href="{% url 'blog_detail' id=post.id %}">Read More >>> </a>
-<p style="text-align:right">创建时间：{{post.pub_date}}</p>
+<div style='background-color:#EEE0E5;' id="fname" onfocues="setstyle(this.id)">
+        <a href="{% url 'blog_detail' id=post.id %}" style="text-decoration:none"><h2 style="font-family:Simsun;font-size:35px">{{post.title}}</h1></a>
+        标签: <span style="background:#FF1493;">{{post.category}}</span>
+        <br>
+      <!--  <a href="{% url 'blog_detail' id=post.id %}">Read More >>> </a>-->
+        <p style="text-align:right">创建时间：{{post.pub_date}}</p>
 
-<!--<p style="text-align:right">最后修改时间：{{post.update_time}}</p>-->
+        <!--<p style="text-align:right">最后修改时间：{{post.update_time}}</p>-->
 
-<p  style="background-color: rgba(0,0,0,0.7);">--></p>
+</div>
 {%endfor%}
 
 
