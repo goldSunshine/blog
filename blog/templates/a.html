@@ -10,14 +10,16 @@ body{
   background-size:100%;
   {% load staticfiles %}
   
-  background:url("{% static '13.jpg' %}") no-repeat;
+  background:url("{% static '13.jpg' %}") no-repeat fixed;
+ 
+  #background-attachment:fixed;
 }
 
 #home {
     background-color:white;
 #    text-align:center;
     width:90%;
-    border-radius: 5px; 
+    border-radius: 40px; 
     height:2000px;
     opacity:0.8;
     margin:50px auto auto auto; 
@@ -26,27 +28,41 @@ body{
 
 #title{
     width:100%;
-    height:120px;
+    height:100px;
+    margin-top:20px;
 }
 
 #container{
     width:100%;
-    height:auto;
-    height:800px;
+    height:1650px;
+    border-radius: 40px; 
 }
 
 #side {
-    background-color:#FFE4C4;
+    background-color:#FFFACD;
     float: left;  
     width:220px; 
     border-right:solid 1px black;
-     height:800px;
+    height:1700px;
+    margin-left:20px;
    
+}
+
+#bottom{
+   background-color:#2E8B57;
+   width:95%;
+   height:60px;
+   margin:0 auto;
+   text-align:center;
+   line-height:60px;
+   margin:50px auto auto auto; 
 }
 
 #content {
     margin-left:220px;
-    height:800px;
+    height:1700px;
+    padding-left:50px;
+    padding-right:10px;
 
 function setstyle(x)
 {
@@ -71,7 +87,9 @@ document.getElementById(x).style.background="yellow";
 <div id="container">
 
 <div id="side">
+<!--
 <img src="{% static 'github1.jpg' %}" width="100" height="100"   style="float:left"/>
+-->
 </div>
 
 <div id="content">
@@ -79,7 +97,7 @@ document.getElementById(x).style.background="yellow";
 
 
 {% for post in post_list %}
-<div style='background-color:#EEE0E5;' id="fname" onfocues="setstyle(this.id)">
+<div style='background-color:#EEE0E5;padding-left:20px;border-top-left-radius:20px;border-bottom-right-radius:20px' id="fname" onfocues="setstyle(this.id)">
         <a href="{% url 'blog_detail' id=post.id %}" style="text-decoration:none"><h2 style="font-family:Simsun;font-size:35px">{{post.title}}</h1></a>
         标签: <span style="background:#FF1493;">{{post.category}}</span>
         <br>
@@ -94,6 +112,9 @@ document.getElementById(x).style.background="yellow";
 
 </div><!--content-->
 
+<div id="bottom">
+Copyright金色旭光
+</div>
 
 
 </div><!--end for home-->
