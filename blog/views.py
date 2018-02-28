@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from blog.models import Article
 from django.http import HttpResponse
+from django.core.paginator import Paginator
+from django.core.paginator import EmptyPage
+from django.core.paginator import PageNotAnInteger
 import datetime
 
 def test(request):
@@ -11,8 +14,19 @@ def test(request):
 
 def home(request):
     post_list = Article.objects.all()
+    limiate = 10
+    paginator = Paginator(post_list,limiate)
 
-    return render(request,'a.html',{'post_list':post_list})
+    page = request.GET.get('page')
+    
+    try:
+        post_list_page = paginator.page(page)
+    except PageNotAnInteger:
+        post_list_page = paginator.page(1)
+    except EmptyPage:
+        post_list_page = paginator.page(paginator.num_pages)
+     
+    return render(request,'a.html',{'post_list':post_list_page})
 
 
 def detail(request,id):
