@@ -55,7 +55,10 @@ body{
    margin:0 auto;
    text-align:center;
    line-height:60px;
-   margin:50px auto auto auto; 
+   margin:0 auto auto auto; 
+}
+#page{
+   text-align:center;
 }
 
 #content {
@@ -69,6 +72,37 @@ function setstyle(x)
 document.getElementById(x).style.background="yellow";
 }
     
+}
+
+
+
+#menu{  
+      font-size: 30px;  
+      #font-weight: bold;  
+     }  
+#menu li{  
+      text-decoration: none;//去掉li前面的圆点  
+      list-style: none;  
+	  text-align:center;
+      display: inline;//让li横向排列  
+        }  
+#menu li a{  
+      color:#9B30FF;  
+      text-decoration: none;//去掉a的下划线样式  
+        }  
+
+#menu li:hover{background:#66CD00; filter : alpha(opacity=20);}
+
+#a{ 
+      border: 1px solid #0F0F0F;  
+	  text-align:center;
+      padding-left:30px;  
+}
+#b{ 
+      border: 2px solid #0F0F0F;  
+      padding-left:20px;  
+	  text-align:center;
+      background-color:#2E8B57;
 }
 
 </style>
@@ -111,6 +145,10 @@ document.getElementById(x).style.background="yellow";
 
 
 </div><!--content-->
+
+
+
+
 <!--
 <div>
 <p>
@@ -125,11 +163,12 @@ document.getElementById(x).style.background="yellow";
 </div>
 -->
 
-<div class="pagination">
+
+<div id="page">
 <nav>
-<ul class="pagination">
+<ul id="menu">
 {% if post_list.has_previous %}
- <li class="">
+ <li id="a">
     <a href="page={{post_list.previous_page_number }}" aria-label="previous">
     <span aria_hidden="ture">&laquo;</span>
     </a>
@@ -138,14 +177,14 @@ document.getElementById(x).style.background="yellow";
 
 {% for page_num in post_list.paginator.page_range %}
     {% if page_num == post_list.number %}
-     <li class="active"><a href="?page={{ page_num }}">{{ page_num }}</a> </li>
+     <li id="b"><a href="?page={{ page_num }}">{{ page_num }}</a> </li>
      {% else %}
-     <li class=""><a href="?page={{ page_num }}">{{ page_num }}</a> </li>
+     <li id="a"><a href="?page={{ page_num }}">{{ page_num }}</a> </li>
     {% endif %}
 {% endfor %}
 
 {% if post_list.has_next %}
-    <li class="">
+    <li id="a">
         <a href="?page={{post_list.next_page_number }}" aria-label="Next">
         <span aria_hidden="true">&raquo;</span>
         </a>
@@ -155,8 +194,6 @@ document.getElementById(x).style.background="yellow";
 </nav>
 
 </div>
-
-
 
 
 <div id="bottom">
