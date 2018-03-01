@@ -14,7 +14,7 @@ def test(request):
 
 def home(request):
     post_list = Article.objects.all()
-    limiate = 9
+    limiate = 5
     paginator = Paginator(post_list,limiate)
 
     page = request.GET.get('page')
