@@ -1,0 +1,4 @@
+display:inline-block 可以让div横向排列。
+
+<div style="display:inline-block;">
+</div>
