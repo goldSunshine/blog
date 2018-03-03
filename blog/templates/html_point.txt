@@ -1,4 +1,17 @@
+
+div横向排列
 display:inline-block 可以让div横向排列。
 
 <div style="display:inline-block;">
 </div>
+
+边框角度
+四个角度
+border-radius:25px
+左上角
+border-top-left-radius:5px;
+
+
+
+调节两个div之间的距离：
+margin:0 0 0 20px; 四个参数分别是：上 右 下 左

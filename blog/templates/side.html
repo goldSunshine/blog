@@ -1,36 +1,51 @@
 <div>
-<span style="border:1px solid black;display:inline-block;width:200px;height:30px">导航</span>
+<span style="border:1px solid #EEDFCC;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;">导航</span>
 </div>
 
 
-<div style="margin:0px auto;background-color:red;display:text-align;center;">
-<div style="width:40px;height:40px;background-color:#C0FF3E;border-radius:50%;text-align:center;line-height:40px;border:1px solid #6A5ACD;display:inline-block;">
+<div style="display:text-align;center;margin:10px 0 0 0;">
+<div style="width:40px;height:40px;background-color:#C0FF3E;border-radius:50%;text-align:center;line-height:40px;border:1px solid #6A5ACD;display:inline-block;margin:0 0 0 10px;">
 首页
 </div>
-<div style="width:40px;height:40px;background-color:#C0FF3E;border-radius:50%;text-align:center;line-height:40px;border:1px solid #6A5ACD;display:inline-block;top:50%;left:50%">
+<div style="width:40px;height:40px;background-color:#C0FF3E;border-radius:50%;text-align:center;line-height:40px;border:1px solid #6A5ACD;display:inline-block;top:50%;left:50%;margin:0 0 0 20px;">
 订阅
 </div>
-<div style="width:40px;height:40px;background-color:#C0FF3E;border-radius:50%;text-align:center;line-height:40px;border:1px solid #6A5ACD;display:inline-block;">
+<div style="width:40px;height:40px;background-color:#C0FF3E;border-radius:50%;text-align:center;line-height:40px;border:1px solid #6A5ACD;display:inline-block;margin:0 0 0 20px;">
 联系
 </div>
 </div>
-<div style="width:200px">
+<div style="border:1px solid #EEDFCC;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;margin:20px 0 0 0";>
+公告
+</div>
+<div style="width:200px;margin:20px 0 0 0;">
 
+<div style="text-align:center;">
  {% load staticfiles %}
 <img src="{% static 'github1.jpg' %}" style="width:100px;height:100px"/>
+</div>
+ {% load staticfiles %}
 <h3>博客:个人博客</h3>
 <h3>昵称:金色旭光</h3>
 </div>
 
-<div style="height:100px"">
-<h3>博文分类</h3>
+<div style="border:1px solid #EEDFCC;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;margin:20px 0 0 0;">
+博文分类
 </div>
-<div style="height:100px"">
-<h3>博文档案</h3>
+
+{% for post in post_list %}
+<p style="text-align:left">{{post.category}}</p>
+{%endfor%}
+<div style="border:1px solid #EEDFCC;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;margin:20px 0 0 0;">
+博文档案
 </div>
-<div style="height:100px"">
-<h3>评论排行榜</h3>
+
+{% for post in post_list %}
+<p style="text-align:left">{{post.pub_date}}</p>
+{%endfor%}
+<div style="border:1px solid #EEDFCC;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;margin:20px 0 0 0;">
+评论排行榜
 </div>
-<div style="height:100px"">
-<h3>推荐排行榜</h3>
+
+<div style="border:1px solid #EEDFCC;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;margin:20px 0 0 0;">
+推荐排行榜
 </div>
