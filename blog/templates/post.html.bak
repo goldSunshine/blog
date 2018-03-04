@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+   
+</head>
+
+
+<body bgcolor="#FFEC8B"">
+<p>{{post.title}}</p>
+<p>{{post.category}}</p>
+<p>{{post.content|safe}}</p>
+</body>
+</html>

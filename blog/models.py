@@ -8,8 +8,6 @@ class Article(models.Model):
     category = models.CharField("博客标签",max_length = 50,blank = True)
     pub_date = models.DateTimeField("发布时间",auto_now_add = True,editable=True)
     update_time = models.DateTimeField("跟新时间",auto_now=True,null=True)
-    #content = models.TextField(blank=True,null=True)
-
     content = UEditorField("文章正文",height=300,width=1000,default="",blank=True,imagePath="uploads/blog/images/",
                            toolbars="besttome",filePath="uploads/blog/files")
 

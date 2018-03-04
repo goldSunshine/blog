@@ -21,7 +21,7 @@
 
 <div style="text-align:center;">
  {% load staticfiles %}
-<img src="{% static 'github1.jpg' %}" style="width:100px;height:100px"/>
+<img src="{% static 'github4.png' %}" style="width:150px;height:150px"/>
 </div>
  {% load staticfiles %}
 <h3>博客:个人博客</h3>
@@ -32,15 +32,15 @@
 博文分类
 </div>
 
-{% for post in post_list %}
-<p style="text-align:left">{{post.category}}</p>
+{% for key,value  in art_type.items %}
+<p style="text-align:left">{{key}}:{{value}}</p>
 {%endfor%}
 <div style="border:1px solid #EEDFCC;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;margin:20px 0 0 0;">
 博文档案
 </div>
 
-{% for post in post_list %}
-<p style="text-align:left">{{post.pub_date}}</p>
+{% for key,value  in art_docu.items %}
+<p style="text-align:left">{{ key }}:{{ value }}</p>
 {%endfor%}
 <div style="border:1px solid #EEDFCC;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;margin:20px 0 0 0;">
 评论排行榜

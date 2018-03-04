@@ -1,14 +1,166 @@
 <!DOCTYPE html>
-
 <html>
+
 <head>
+    <meta charset="UTF-8">
+<style>
+
+body{
+  height:auto;
+  background-size:100%;
+  {% load staticfiles %}
+  
+  background:url("{% static '13.jpg' %}") no-repeat fixed;
+ 
+  #background-attachment:fixed;
+}
+
+#home {
+    background-color:white;
+#    text-align:center;
+    width:90%;
+    border-radius: 40px; 
+    height:2000px;
+    opacity:0.8;
+    margin:50px auto auto auto; 
+    box-shadow: 0px 0px 10px 5px #888888;
+}
+
+#title{
+    width:100%;
+    height:100px;
+    margin-top:20px;
+}
+
+#container{
+    width:100%;
+    height:1650px;
+    border-radius: 40px; 
+}
+
+#side {
+    background-color:#FFFACD;
+    float: left;  
+    width:220px; 
+    border-right:solid 1px black;
+    height:1700px;
+    margin-left:20px;
    
+}
+
+#bottom{
+   background-color:#2E8B57;
+   width:95%;
+   height:60px;
+   margin:0 auto;
+   text-align:center;
+   line-height:60px;
+   margin:0 auto auto auto; 
+}
+#page{
+   text-align:center;
+}
+
+#content {
+    margin-left:220px;
+    height:1700px;
+    padding-left:50px;
+    padding-right:10px;
+
+function setstyle(x)
+{
+document.getElementById(x).style.background="yellow";
+}
+    
+}
+
+
+
+#menu{  
+      font-size: 20px;  
+      #font-weight: bold;  
+     }  
+#menu li{  
+      text-decoration: none;//去掉li前面的圆点  
+      list-style: none;  
+	  text-align:center;
+      display: inline;//让li横向排列  
+        }  
+#menu li a{  
+      color:#9B30FF;  
+      text-decoration: none;//去掉a的下划线样式  
+        }  
+
+#menu li:hover{background:#66CD00; filter : alpha(opacity=20);}
+
+#a{ 
+     # border: 1px solid #0F0F0F;  
+	  text-align:center;
+      padding-left:10px;  
+      padding-right:10px;  
+}
+#b{ 
+      #border: 2px solid #0F0F0F;  
+      padding-left:10px;  
+      padding-right:10px;  
+	  text-align:center;
+      background-color:#2E8B57;
+}
+
+</style>
 </head>
 
+<body>
 
-<body bgcolor="#FFEC8B"">
-<p>{{post.title}}</p>
-<p>{{post.category}}</p>
-<p>{{post.content|safe}}</p>
+<div id="home">
+
+<div id="title">
+{% load staticfiles %}
+<img src="{% static 'logo.jpg' %}" width="120" height="120" style="float:left"/>
+<img src="{% static 'name.png' %}"          style="float:left"/>
+</div><!--end for title-->
+
+<div id="container">
+
+<div id="side">
+{% include "side.html" %}
+</div>
+
+<div id="content">
+
+
+
+<div style='background-color:#EEE0E5;padding-left:20px;border-top-left-radius:20px;border-bottom-right-radius:20px' id="fname" onfocues="setstyle(this.id)">
+        <a href="{% url 'blog_detail' id=post.id %}" style="text-decoration:none"><h2 style="font-family:Simsun;font-size:35px">{{post.title}}</h1></a>
+        标签: <span style="background:#FF1493;">{{post.category}}</span>
+        <br>
+        <p >{{post.content|safe}}</p>
+        <p style="text-align:right">创建时间：{{post.pub_date}}</p>
+
+        <!--<p style="text-align:right">最后修改时间：{{post.update_time}}</p>-->
+
+</div>
+
+
+</div><!--content-->
+
+
+
+
+
+
+
+<div id="bottom">
+Copyright金色旭光
+</div>
+
+
+</div><!--end for home-->
+
+
+
+
+
+
 </body>
 </html>
