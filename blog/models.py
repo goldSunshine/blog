@@ -10,6 +10,7 @@ class Article(models.Model):
     update_time = models.DateTimeField("跟新时间",auto_now=True,null=True)
     content = UEditorField("文章正文",height=300,width=1000,default="",blank=True,imagePath="uploads/blog/images/",
                            toolbars="besttome",filePath="uploads/blog/files")
+    zan = models.IntegerField(default=0)
 
 
     def __unicode__(self):

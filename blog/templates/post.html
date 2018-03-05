@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 
+  {% load staticfiles %}
+
 <head>
     <meta charset="UTF-8">
 <style>
@@ -20,8 +22,7 @@ body{
 #    text-align:center;
     width:90%;
     border-radius: 40px; 
-    height:2000px;
-    opacity:0.8;
+    min-height:1200px;
     margin:50px auto auto auto; 
     box-shadow: 0px 0px 10px 5px #888888;
 }
@@ -34,7 +35,7 @@ body{
 
 #container{
     width:100%;
-    height:1650px;
+    height:1000px;
     border-radius: 40px; 
 }
 
@@ -43,19 +44,18 @@ body{
     float: left;  
     width:220px; 
     border-right:solid 1px black;
-    height:1700px;
+    height:1000px;
     margin-left:20px;
    
 }
 
 #bottom{
-   background-color:#2E8B57;
+   background-color:#55895b;
    width:95%;
-   height:60px;
-   margin:0 auto;
+   height:40px;
    text-align:center;
-   line-height:60px;
-   margin:0 auto auto auto; 
+   line-height:40px;
+   margin:20px auto auto auto; 
 }
 #page{
    text-align:center;
@@ -63,14 +63,11 @@ body{
 
 #content {
     margin-left:220px;
-    height:1700px;
+    height:1000px;
+    height:auto;
     padding-left:50px;
     padding-right:10px;
 
-function setstyle(x)
-{
-document.getElementById(x).style.background="yellow";
-}
     
 }
 
@@ -108,6 +105,38 @@ document.getElementById(x).style.background="yellow";
 }
 
 </style>
+
+
+<script src="{% static 'js/jquery-2.1.1/jquery.min.js' %}"></script>
+<script type="text/javascript">
+function zan()
+{
+
+var content=document.getElementById("zan")
+var content_id=document.getElementById("zan")
+//var num2 = parselnt(num.innerText)
+
+var string_num = content.innerText
+var string_id = content_id.innerText
+
+var num = parseInt(string_num) + 1
+document.getElementById("zan").innerHTML=num
+$.ajax({
+    url:"/handle_post/",
+    data:{'num':num,"id":string_id},
+    type:"POST",
+    tradition:true,
+    dataType:'json',
+    success: function( data ){
+        alert(1);
+      }
+});
+
+
+}
+</script>
+
+
 </head>
 
 <body>
@@ -139,17 +168,18 @@ document.getElementById(x).style.background="yellow";
 
         <!--<p style="text-align:right">最后修改时间：{{post.update_time}}</p>-->
 
+<div style="width:100px;height:100px;position:fixed;bottom:100px;right:200px;border:3px solid green;background-image:url({% static 'good5.gif' %});background-size: 100% 100%;opacity:1;text-align:center;" onclick="zan()"> 
+<p  id="zan" style="margin:0 auto;">{{ post.zan }}</p>
+<p  id="articleid" style="margin:0 auto;">{{ post.id }}</p>
 </div>
+</div><!--end for article-->
+
+
 
 
 </div><!--content-->
 
-
-
-
-
-
-
+</div>
 <div id="bottom">
 Copyright金色旭光
 </div>

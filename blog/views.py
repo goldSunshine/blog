@@ -7,21 +7,9 @@ from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
 import datetime
 
-dict_document = {}
-dict_type={}
-def test(request):
-    post = Article.objects.all()
-    #return HttpResponse(post[0].content+post[0].title+post[0].category)
-    return render(request,'1.html')
-
-
-def home(request):
-    article_type = []
-    post_list = Article.objects.all()
-    print post_list
-
-
 #---------------------博客档案-----------------------------------
+def art_document(post_list):
+    article_type = []
     for post in post_list:
         time = str(post.pub_date)
         temp = time.split()
@@ -40,9 +28,12 @@ def home(request):
         c.append((x,num[count]))
         count = count + 1
     dict_document = dict(c)
+    return dict_document    
 #----------------------------------------------------------------
 
+
 #-------------------博客分类------------------------------------
+def art_type(post_list):
     type_list = [] 
     for post in post_list:
         type_docu = post.category
@@ -58,11 +49,36 @@ def home(request):
         art_type.append((x,num_type[count_type]))
         count_type = count_type + 1
     dict_type = dict(art_type)
-    print dict_type
-        
+    return dict_type
 #---------------------------------------------------------------
 
-    limiate = 5
+
+
+def handle_post(request):
+    print "it is a test"
+    
+    num = request.POST['num']
+    id_art = request.POST['id']
+    print num
+    print id_art
+    Article.objects.filter(id=str(id)).update(zan=num)
+    return HttpResponse("<h1>test</h1>")
+
+
+def home(request):
+    article_type = []
+    post_list = Article.objects.all()
+   
+
+#---------------------博客档案-----------------------------------
+    dict_document = art_document(post_list)
+#----------------------------------------------------------------
+
+#-------------------博客分类------------------------------------
+    dict_type = art_type(post_list) 
+#---------------------------------------------------------------
+
+    limiate = 10
     paginator = Paginator(post_list,limiate)
 
     page = request.GET.get('page')
@@ -78,5 +94,14 @@ def home(request):
 
 
 def detail(request,id):
-	post = Article.objects.get(id = str(id))
-	return render(request,'post.html',{"post":post,"art_docu":dict_document,"art_type":dict_type})
+    post = Article.objects.get(id = str(id))
+    print post.zan
+    post_list = Article.objects.all()
+    dict_document = art_document(post_list)
+    dict_type = art_type(post_list) 
+    return render(request,'post.html',{"post":post,"art_docu":dict_document,"art_type":dict_type})
+
+
+
+
+

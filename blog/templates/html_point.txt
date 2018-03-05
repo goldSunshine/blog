@@ -15,3 +15,70 @@ border-top-left-radius:5px;
 
 调节两个div之间的距离：
 margin:0 0 0 20px; 四个参数分别是：上 右 下 左
+
+调整元素在div中的位置
+div p{margin:0 auto;width:200px;}
+
+
+固定一个div在界面上
+
+position:fixed
+调节div的相对位置：
+
+<div style="position:fixed;top:100px;bottom:100px">
+
+</div>
+
+
+<script>修改标签p中的值
+
+1、如果p便签有id，var x=document.getElementById("p标签的ID");x.innerHTML="内容";
+2、如果p标签有name，var x=document.getElementsByName("p标签的name");x[0].innerHTML="内容";  //name可能会重复，根据实际情况选择其下标
+
+3、无name，无id，var x=document.getElementsByTagName("p");//注意返回的是个集合
+x[0].innerHTML="内容";
+4、有class的情况：
+function getElementsByClassName(classofP) { 
+    var el = [],
+            _el = document.getElementsByTagName('*');
+                for (var i=0; i<_el.length; i++ ) {
+                       if (_el[i].className ==classofP ) {
+                                  el[el.length] = _el[i];
+                                          }
+                                             }
+                                                return el;
+                                                }
+                                                var x=getElementsByClassName("p的class");
+                                                x[0].innerHTML="内容";//x是集合  注意下标根据实际情况改变
+
+
+
+
+
+
+
+
+
+
+控件绑定函数
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function copyText()
+{
+document.getElementById("field2").value=document.getElementById("field1").value;
+}
+</script>
+</head>
+<body>
+
+Field1: <input type="text" id="field1" value="Hello World!"><br>
+Field2: <input type="text" id="field2"><br><br>
+
+<button onclick="copyText()">复制文本</button>
+
+<p>当按钮被单击时触发函数。此函数把文本从 Field1 复制到 Field2 中。</p>
+
+</body>
+</html>

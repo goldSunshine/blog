@@ -20,7 +20,7 @@ body{
 #    text-align:center;
     width:90%;
     border-radius: 40px; 
-    height:2000px;
+    height:1980px;
     opacity:0.8;
     margin:50px auto auto auto; 
     box-shadow: 0px 0px 10px 5px #888888;
@@ -51,10 +51,9 @@ body{
 #bottom{
    background-color:#2E8B57;
    width:95%;
-   height:60px;
-   margin:0 auto;
+   height:40px;
    text-align:center;
-   line-height:60px;
+   line-height:40px;
    margin:0 auto auto auto; 
 }
 #page{
@@ -67,10 +66,6 @@ body{
     padding-left:50px;
     padding-right:10px;
 
-function setstyle(x)
-{
-document.getElementById(x).style.background="yellow";
-}
     
 }
 
@@ -108,6 +103,12 @@ document.getElementById(x).style.background="yellow";
 }
 
 </style>
+<script>
+function setstyle(x)
+
+document.getElementById(x).style.background-color="yellow";
+}
+</script>
 </head>
 
 <body>
@@ -148,22 +149,6 @@ document.getElementById(x).style.background="yellow";
 
 
 
-
-<!--
-<div>
-<p>
-{% for page_number in post_list.paginator.page_range %}
-{% ifequal page_number post_list.number %}
-   {{page_number}}
-{% else %}
-    <a href="?page={{ page_number }}" >{{ page_number }}</a>
-{% endifequal %}
-{% endfor %}
-</p>
-</div>
--->
-
-
 <div id="page">
 <nav>
 <ul id="menu">
@@ -193,12 +178,15 @@ document.getElementById(x).style.background="yellow";
 </ul>
 </nav>
 
-</div>
 
+</div><!--end for page-->
 
 <div id="bottom">
 Copyright金色旭光
 </div>
+
+</div><!--end for container-->
+
 
 
 </div><!--end for home-->
