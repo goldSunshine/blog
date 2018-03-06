@@ -1,6 +1,7 @@
 #coding:UTF-8
 from django.shortcuts import render
 from blog.models import Article
+from blog.models import Comment
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 from django.core.paginator import EmptyPage
@@ -55,13 +56,21 @@ def art_type(post_list):
 
 
 def handle_post(request):
-    print "it is a test"
-    
-    num = request.POST['num']
-    id_art = request.POST['id']
-    print num
-    print id_art
-    Article.objects.filter(id=str(id)).update(zan=num)
+    print "it is handle_post" 
+    type_source = request.POST['type']
+    print type_source
+
+    if type_source == "comment":
+        print "this is comment"
+        text = request.POST['comment']
+        id_art = request.POST['id']
+        print text
+        print id_art
+        Comment.objects.create(art_id=id_art,discuss=text)
+    if type_source == "zan": 
+        num = request.POST['num']
+        id_art = request.POST['id']
+        Article.objects.filter(id=str(id_art)).update(zan=num)
     return HttpResponse("<h1>test</h1>")
 
 
@@ -95,11 +104,16 @@ def home(request):
 
 def detail(request,id):
     post = Article.objects.get(id = str(id))
-    print post.zan
+    discuss = Comment.objects.filter(art_id = id)
+    
+
+    Article.objects.filter(id=str(id)).update(read_num = post.read_num + 1)
+    
+    
     post_list = Article.objects.all()
     dict_document = art_document(post_list)
     dict_type = art_type(post_list) 
-    return render(request,'post.html',{"post":post,"art_docu":dict_document,"art_type":dict_type})
+    return render(request,'post.html',{"post":post,"art_docu":dict_document,"art_type":dict_type,"comment":discuss})
 
 
 

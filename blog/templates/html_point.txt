@@ -82,3 +82,13 @@ Field2: <input type="text" id="field2"><br><br>
 
 </body>
 </html>
+
+
+
+
+
+
+
+不刷新设置div中内容：
+
+ document.getElementById('div').innerHTMl="要加载的内容"

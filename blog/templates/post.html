@@ -25,6 +25,8 @@ body{
     min-height:1200px;
     margin:50px auto auto auto; 
     box-shadow: 0px 0px 10px 5px #888888;
+    position:relative;
+    overflow:hidden;
 }
 
 #title{
@@ -35,7 +37,8 @@ body{
 
 #container{
     width:100%;
-    height:1000px;
+    min-height:1000px;
+    height:auto;
     border-radius: 40px; 
 }
 
@@ -55,7 +58,7 @@ body{
    height:40px;
    text-align:center;
    line-height:40px;
-   margin:20px auto auto auto; 
+   margin:50px 0 30px 25px;  
 }
 #page{
    text-align:center;
@@ -113,7 +116,7 @@ function zan()
 {
 
 var content=document.getElementById("zan")
-var content_id=document.getElementById("zan")
+var content_id=document.getElementById("articleid")
 //var num2 = parselnt(num.innerText)
 
 var string_num = content.innerText
@@ -123,7 +126,7 @@ var num = parseInt(string_num) + 1
 document.getElementById("zan").innerHTML=num
 $.ajax({
     url:"/handle_post/",
-    data:{'num':num,"id":string_id},
+    data:{'type':"zan",'num':num,"id":string_id},
     type:"POST",
     tradition:true,
     dataType:'json',
@@ -134,6 +137,31 @@ $.ajax({
 
 
 }
+
+function commit(){
+
+var text=document.getElementById("commenta").value;
+
+document.getElementById("show").style.display=""
+document.getElementById("show").innerHTML=text;
+
+document.getElementById("commenta").value="";
+var content_id=document.getElementById("articleid")
+var string_id = content_id.innerText
+$.ajax({
+    url:"/handle_post/",
+    data:{'type':"comment","comment":text,"id":string_id},
+    type:"POST",
+    tradition:true,
+    dataType:'json',
+    success: function( data ){
+        alert(1);
+      }
+});
+
+}
+
+
 </script>
 
 
@@ -168,13 +196,42 @@ $.ajax({
 
         <!--<p style="text-align:right">最后修改时间：{{post.update_time}}</p>-->
 
-<div style="width:100px;height:100px;position:fixed;bottom:100px;right:200px;border:3px solid green;background-image:url({% static 'good5.gif' %});background-size: 100% 100%;opacity:1;text-align:center;" onclick="zan()"> 
+<div style="width:100px;height:100px;position:fixed;bottom:100px;right:200px;border:0px solid green;background-image:url({% static 'good5.gif' %});background-size: 100% 100%;opacity:1;text-align:center;" onclick="zan()"> 
 <p  id="zan" style="margin:0 auto;">{{ post.zan }}</p>
-<p  id="articleid" style="margin:0 auto;">{{ post.id }}</p>
+<p  id="articleid" style="margin:0 auto;" hidden="hidden">{{ post.id }}</p>
 </div>
+
 </div><!--end for article-->
 
+<hr/>
+<div style="background-color:#EEE685;margin:100px auto auto auto;font-family: "Microsoft YaHei" ! important;;>
+<p>作者:金色旭光</p>
+<p>出处：http://172.171.5.205"</p>
+<p style="font-family: "Microsoft YaHei" ! important;">本文版权归作者所有，欢迎转载，转载请标明出处。</p>
+<p>如果您觉得本篇博文对您有所收获，请点赞</p>
+</div>
+<h2>发表评论</h2>
+<div >
+<textarea id="commenta" rows="4" cols="100" name="comment" form="usrform">
+请在此处输入评论</textarea>
+</div>
+<input type="submit" value="提交评论" style="margin-left:700px;margin-top:20px" onclick="commit()">
 
+
+<p style="margin-left:80%;">阅读量：{{ post.read_num  }}</p>
+
+<div id="comment_show" >
+<h3>评论区</h3>
+
+<div id="show" style="background-color:#EEE9E9;height:80px;display:none;" >
+</div>
+{% for i in comment %}
+<div style="background-color:#EEE9E9;height:100px">
+<p >{{ i.discuss  }} {{ i.comment_time  }} </p>
+
+</div>
+{% endfor  %}
+</div>
 
 
 </div><!--content-->
@@ -184,6 +241,8 @@ $.ajax({
 Copyright金色旭光
 </div>
 
+
+</div>
 
 </div><!--end for home-->
 
