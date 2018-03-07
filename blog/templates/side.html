@@ -1,5 +1,5 @@
 <div>
-<span style="border:1px solid #EEDFCC;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;">导航</span>
+<span style="border:1px solid #55895b;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;line-height:30px;diplay:hidden;">导航</span>
 </div>
 
 
@@ -14,7 +14,7 @@
 联系
 </div>
 </div>
-<div style="border:1px solid #EEDFCC;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;margin:20px 0 0 0";>
+<div style="border:1px solid #55895b;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;margin:20px 0 0 0;line-height:30px;">
 公告
 </div>
 <div style="width:200px;margin:20px 0 0 0;">
@@ -28,24 +28,34 @@
 <h3>昵称:金色旭光</h3>
 </div>
 
-<div style="border:1px solid #EEDFCC;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;margin:20px 0 0 0;">
+<div style="border:1px solid #55895b;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;margin:20px 0 0 0;line-height:30px;">
 博文分类
 </div>
 
 {% for key,value  in art_type.items %}
-<p style="text-align:left">{{key}}:{{value}}</p>
+<p style="text-align:left;margin:8px auto;font-size:14px;">{{key}}:{{value}}</p>
 {%endfor%}
-<div style="border:1px solid #EEDFCC;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;margin:20px 0 0 0;">
+<div style="border:1px solid #55895b;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;margin:20px 0 0 0;line-height:30px">
 博文档案
 </div>
 
 {% for key,value  in art_docu.items %}
-<p style="text-align:left">{{ key }}:{{ value }}</p>
+<p style="text-align:left;margin:5px auto;font-size:14px;">{{ key }}:{{ value }}</p>
 {%endfor%}
-<div style="border:1px solid #EEDFCC;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;margin:20px 0 0 0;">
-评论排行榜
-</div>
-
-<div style="border:1px solid #EEDFCC;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;margin:20px 0 0 0;">
+<div style="border:1px solid #55895b;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;margin:20px 0 0 0;line-height:30px">
 推荐排行榜
+</div>
+{% for i in zan_num %}
+<p style="text-align:left;margin:5px auto;font-size:14px;">{{i.title}}:{{i.zan}}</p>
+{%endfor%}
+
+<div style="border:1px solid #55895b;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;margin:20px 0 0 0;line-height:30px;">
+阅读排行榜
+</div>
+{% for i  in read_num %}
+<p style="text-align:left;margin:8px auto;font-size:14px;">{{i.title}}:{{i.read_num}}</p>
+{%endfor%}
+
+<div style="border:1px solid #55895b;display:inline-block;width:90%;height:30px;border-left-width:5px;border-left-color:green;margin:20px 0 0 0;line-height:30px;">
+评论排行榜
 </div>

@@ -56,16 +56,11 @@ def art_type(post_list):
 
 
 def handle_post(request):
-    print "it is handle_post" 
     type_source = request.POST['type']
-    print type_source
 
     if type_source == "comment":
-        print "this is comment"
         text = request.POST['comment']
         id_art = request.POST['id']
-        print text
-        print id_art
         Comment.objects.create(art_id=id_art,discuss=text)
     if type_source == "zan": 
         num = request.POST['num']
@@ -92,6 +87,8 @@ def home(request):
 
     page = request.GET.get('page')
     
+
+    zantop4,readtop4 = read_zan()
     try:
         post_list_page = paginator.page(page)
     except PageNotAnInteger:
@@ -99,7 +96,7 @@ def home(request):
     except EmptyPage:
         post_list_page = paginator.page(paginator.num_pages)
      
-    return render(request,'a.html',{'post_list':post_list_page,"art_docu":dict_document,"art_type":dict_type})
+    return render(request,'a.html',{'post_list':post_list_page,"art_docu":dict_document,"art_type":dict_type,"read_num":readtop4,"zan_num":zantop4})
 
 
 def detail(request,id):
@@ -107,15 +104,26 @@ def detail(request,id):
     discuss = Comment.objects.filter(art_id = id)
     
 
+    
+    zantop4,readtop4 = read_zan()
     Article.objects.filter(id=str(id)).update(read_num = post.read_num + 1)
     
     
     post_list = Article.objects.all()
     dict_document = art_document(post_list)
     dict_type = art_type(post_list) 
-    return render(request,'post.html',{"post":post,"art_docu":dict_document,"art_type":dict_type,"comment":discuss})
+    return render(request,'post.html',{"post":post,"art_docu":dict_document,"art_type":dict_type,"comment":discuss,"read_num":readtop4,"zan_num":zantop4})
 
+def read_zan():
+    read_num = Article.objects.all().order_by("read_num").reverse()
+    zan_num = Article.objects.all().order_by("zan").reverse()
+    limiate = 4
 
+    readall = Paginator(read_num,limiate)
+    zanall = Paginator(zan_num,limiate)
+    
+    readtop4 = readall.page(1)
+    zantop4 = zanall.page(1)
 
-
-
+    return zantop4,readtop4
+    

@@ -16,9 +16,15 @@ border-top-left-radius:5px;
 调节两个div之间的距离：
 margin:0 0 0 20px; 四个参数分别是：上 右 下 左
 
+调节标签<p>之间的距离
+margin:u auto
+
 调整元素在div中的位置
 div p{margin:0 auto;width:200px;}
 
+调整div中水平居中和垂直居中
+水平居中：text-aligin:center
+垂直居中:line-height:height
 
 固定一个div在界面上
 
@@ -92,3 +98,21 @@ Field2: <input type="text" id="field2"><br><br>
 不刷新设置div中内容：
 
  document.getElementById('div').innerHTMl="要加载的内容"
+
+
+
+ 5.order_by(*fields)
+
+ 　　解释：对查询结果进行排序
+
+ 　　语法：ModelName.objects.all().order_by("itemName")
+
+ 　　例子：Author.objects.all().order_by("id")
+
+ 6.reverse()
+
+ 　　解释：对查询结果反向排序
+
+ 　　语法：ModelName.objects.all().order_by("itemName").reverse()
+
+ 　　例子：Author.objects.all().order_by("id")
